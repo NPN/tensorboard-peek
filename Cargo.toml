@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = ["Ryan Huang <NPN@users.noreply.github.com>"]
 edition = "2018"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
+crossterm = "0.19"
+tfrecord = { version = "0.7", features = ["summary"] }
+tui = { version = "0.14", default-features = false, features = ["crossterm"] }
