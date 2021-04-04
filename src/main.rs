@@ -84,17 +84,22 @@ fn draw_chart(name: &str, data: &[(f64, f64)]) -> Result<(), Box<dyn Error>> {
         .marker(Marker::Braille)
         .graph_type(GraphType::Line);
     let chart = Chart::new(vec![dataset])
-        .x_axis(Axis::default().bounds(bounds.0))
-        .y_axis(Axis::default().bounds(bounds.1));
+        .x_axis(Axis::default().bounds(bounds.0).labels(bounds.0.iter().map(|b| format!("{:.0}", b).into()).collect()))
+        .y_axis(Axis::default().bounds(bounds.1).labels(bounds.1.iter().map(|b| format!("{:.2}", b).into()).collect()));
 
-    terminal.draw(|f| {
-        f.render_widget(chart, f.size());
-    })?;
+    let mut draw = || {
+        terminal.draw(|f| {
+            f.render_widget(chart.clone(), f.size());
+        })
+    };
 
+    draw()?;
     loop {
         use crossterm::event::{self, Event};
-        if let Event::Key(_) = event::read()? {
-            break;
+        match event::read()? {
+            Event::Key(_) => break,
+            Event::Resize(_, _) => draw()?,
+            _ => {}
         }
     }
 
