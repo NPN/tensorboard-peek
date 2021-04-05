@@ -95,9 +95,12 @@ fn draw_chart(name: &str, data: &[(f64, f64)]) -> Result<(), Box<dyn Error>> {
 
     draw()?;
     loop {
-        use crossterm::event::{self, Event};
+        use crossterm::event::{self, Event, KeyCode};
         match event::read()? {
-            Event::Key(_) => break,
+            Event::Key(event) => match event.code {
+                KeyCode::Esc | KeyCode::Char('q') | KeyCode::Char('Q') => break,
+                _ => {}
+            },
             Event::Resize(_, _) => draw()?,
             _ => {}
         }
