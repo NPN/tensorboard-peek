@@ -2,6 +2,8 @@
 
 Peek at a Tensorboard scalar on the command line.
 
+![Screenshot of loss graph](screenshot.png)
+
 ## Usage
 
 Build the program with `cargo run --release`. Any terminal supported by [Crossterm](https://github.com/crossterm-rs/crossterm) should work.
