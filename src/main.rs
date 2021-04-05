@@ -1,7 +1,7 @@
 use std::collections::BTreeSet;
 use std::env;
 use std::error::Error;
-use std::io;
+use std::io::{self, Write};
 
 use crossterm::execute;
 use crossterm::terminal::{

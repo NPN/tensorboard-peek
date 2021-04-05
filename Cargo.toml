@@ -5,6 +5,6 @@ authors = ["Ryan Huang <NPN@users.noreply.github.com>"]
 edition = "2018"
 
 [dependencies]
-crossterm = "0.19"
+crossterm = "0.18"
 tfrecord = { version = "0.7", features = ["summary"] }
 tui = { version = "0.14", default-features = false, features = ["crossterm"] }
